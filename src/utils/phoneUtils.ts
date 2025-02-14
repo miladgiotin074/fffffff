@@ -1,12 +1,11 @@
-import { parsePhoneNumber } from 'libphonenumber-js';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
-// Fix type errors in parsePhoneNumber calls
-export const formatPhoneNumber = (phoneNumber: string) => {
-  const parsedNumber = parsePhoneNumber(phoneNumber, { defaultCountry: 'IR' });
-  return parsedNumber?.formatInternational() || phoneNumber;
+export const formatPhoneNumber = (phone: string): string => {
+    const phoneNumber = parsePhoneNumberFromString(phone, 'IR');
+    return phoneNumber?.formatInternational() || phone;
 };
 
-export const validatePhoneNumber = (phoneNumber: string) => {
-  const parsedNumber = parsePhoneNumber(phoneNumber, { defaultCountry: 'IR' });
-  return parsedNumber?.isValid() || false;
+export const isValidPhoneNumber = (phone: string): boolean => {
+    const phoneNumber = parsePhoneNumberFromString(phone, 'IR');
+    return phoneNumber?.isValid() || false;
 }; 

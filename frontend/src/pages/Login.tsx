@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { LoaderCircle, Send, Check, Key, Plus, Shield, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { LoaderCircle, Send, Check, Key, Shield, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { telegramService } from '@/services/telegramService';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { api } from '@/utils/api';
-import { validatePhoneNumber, formatPhoneNumber, getCountryCode } from '../utils/phoneUtils';
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
+// import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import { TgPage } from '@/components/TgPage';
 import { backButton } from '@telegram-apps/sdk-react';
 import { useNavigate } from 'react-router-dom';
@@ -196,10 +195,10 @@ function Login() {
 
             console.log(data);
 
-            // اگر خطای 400 باشد، data حاوی پیام خطا خواهد بود
-            if (data.error === 'ACCOUNT_EXISTS') {
-                throw new Error('ACCOUNT_EXISTS');
-            }
+            // // اگر خطای 400 باشد، data حاوی پیام خطا خواهد بود
+            // if (data.error === 'ACCOUNT_EXISTS') {
+            //     throw new Error('ACCOUNT_EXISTS');
+            // }
 
             setUserRole(data.userRole || "moderator");
 
@@ -216,7 +215,7 @@ function Login() {
                 return;
             }
 
-            await handleSendCode(phone);
+            await handleSendCode();
 
         } catch (err: any) {
             let errorMessage;
@@ -491,7 +490,7 @@ function Login() {
                                         disabled={loading}
                                     />
                                     {errors.code && (
-                                        <p className="text-red-500 text-sm mt-1 rtl">{errors.code.message}</p>
+                                        <p className="text-red-500 text-sm mt-1 rtl">{errors.code.message?.toString()}</p>
                                     )}
                                 </div>
                                 <div className="flex gap-2">

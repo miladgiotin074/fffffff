@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App';
-import { isTMA, postEvent, retrieveRawInitData, retrieveRawLaunchParams } from '@telegram-apps/bridge';
-import { backButton, init, initDataRaw, retrieveLaunchParams } from '@telegram-apps/sdk-react';
+import { isTMA, postEvent } from '@telegram-apps/bridge';
+import { backButton, init, retrieveLaunchParams } from '@telegram-apps/sdk-react';
 
 try {
   const isTelegramUser = await isTMA();

@@ -38,14 +38,6 @@ interface AuthResponse {
 
 function AddAccount() {
 
-
-    async function handleLogOut() {
-        const result = await client.connect();
-        console.log("connect :", result);
-        const result3 = await client.invoke(new Api.auth.LogOut());
-        console.log("logged out :", result3);
-    }
-
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [authError, setAuthError] = useState<'unauthorized' | 'forbidden' | null>(null);
@@ -110,8 +102,7 @@ function AddAccount() {
                 setCheckError(`⚠️ هنوز ${otherSessions.length} نشست فعال دیگر وجود دارد. لطفاً آنها را خاتمه دهید.`);
             }
         } catch (err: any) {
-            const errorMessage = getFarsiErrorMessage(err.message);
-            setCheckError(errorMessage);
+            setCheckError(err.message);
         } finally {
             setCheckLoading(false);
         }
