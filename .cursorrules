@@ -1,0 +1,9 @@
+#bot rules
+
+All user-facing text and messages in the bot must be defined in the messages.js file. Never hardcode user-facing text directly in command handlers or other components. Always use message keys from messages.js for consistency and easier localization.
+Use MarkdownV2 for text formatting in the bot if needed.
+Use Persian language for all text in the bot.
+Use Persian numbers for all numbers in the bot.
+Use Persian characters for all text in the bot.
+
+
